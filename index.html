@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Sample Modern Website</title>
+<meta name="description" content="A clean, responsive sample website with CSS and minimal JS." />
+
+<!-- Basic Reset + Modern Typography -->
+<style>
+  :root{
+    --bg:#0f1724;
+    --card:#0b1220;
+    --muted:#94a3b8;
+    --accent:#7c3aed; /* purple accent */
+    --glass: rgba(255,255,255,0.04);
+    --radius:14px;
+    --max-width:1100px;
+    --gap:20px;
+    --shadow: 0 6px 18px rgba(2,6,23,0.6);
+    --fw-semi:600;
+  }
+
+  /* Reset */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:
+      radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 6%),
+      radial-gradient(1000px 500px at 90% 90%, rgba(14,165,233,0.06), transparent 6%),
+      var(--bg);
+    color:#e6eef8;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+    padding:40px 20px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+  }
+
+  .wrap{width:100%;max-width:var(--max-width);}
+
+  /* Header / Nav */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:var(--gap);
+    margin-bottom:32px;
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:48px;height:48px;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent),#06b6d4);
+    display:grid;place-items:center;font-weight:800;color:white;box-shadow:var(--shadow);
+  }
+  .brand h1{font-size:1.05rem;letter-spacing:0.2px}
+  nav{display:flex;gap:18px;align-items:center}
+  nav a{
+    color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:500;
+  }
+  nav a:hover{color:white;background:var(--glass)}
+
+  .cta{
+    background:linear-gradient(90deg,var(--accent),#06b6d4);
+    color:white;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700;
+    box-shadow: 0 8px 24px rgba(124,58,237,0.18);
+  }
+
+  /* Mobile nav toggle */
+  .menu-btn{display:none;background:transparent;border:0;color:var(--muted);font-size:1.2rem}
+
+  /* Hero */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:32px;
+    align-items:stretch;
+  }
+  @media (max-width:880px){
+    .hero{grid-template-columns:1fr; padding-top:8px}
+    nav{display:none}
+    .menu-btn{display:block}
+  }
+
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:var(--radius);
+    padding:28px;
+    box-shadow:var(--shadow);
+    border: 1px solid rgba(255,255,255,0.03);
+  }
+
+  .hero-left h2{font-size:1.9rem;margin-bottom:10px}
+  .hero-left p{color:var(--muted);margin-bottom:18px}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 14px;border-radius:10px;color:white;text-decoration:none;font-weight:600}
+  .btn.secondary{background:transparent}
+
+  /* Features grid */
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+  .feature{
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+    padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+  }
+  .feature h4{margin-bottom:6px;font-size:1rem}
+  .feature p{font-size:0.9rem;color:var(--muted)}
+
+  @media (max-width:880px){
+    .features{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:520px){
+    .features{grid-template-columns:1fr}
+  }
+
+  /* Aside (form) */
+  .aside h3{margin-bottom:10px}
+  form .field{margin-bottom:12px}
+  label{display:block;font-size:0.85rem;margin-bottom:6px;color:var(--muted)}
+  input[type="text"], input[type="email"], textarea{
+    width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);
+    background:rgba(255,255,255,0.02);color:inherit;font-size:0.95rem;
+  }
+  textarea{min-height:120px;resize:vertical}
+  .submit{
+    width:100%;padding:12px;border-radius:10px;border:0;font-weight:700;
+    background:linear-gradient(90deg,var(--accent),#06b6d4);color:white;margin-top:6px;
+  }
+  .muted{font-size:0.85rem;color:var(--muted);margin-top:8px}
+
+  /* Footer */
+  footer{margin-top:28px;color:var(--muted);font-size:0.9rem;text-align:center}
+
+  /* small helpers */
+  .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:600;color:var(--muted);font-size:0.85rem}
+  .gap{height:var(--gap)}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">SE</div>
+        <div>
+          <h1>SiteExample</h1>
+          <div class="muted" style="font-size:0.8rem">Modern sample website</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <button class="menu-btn" aria-expanded="false" id="menuToggle">☰</button>
+        <a class="cta" href="#signup">Get Started</a>
+      </div>
+    </header>
+
+    <main class="hero">
+      <section class="card hero-left">
+        <span class="pill">NEW</span>
+        <h2 id="home">Beautiful, fast & accessible websites</h2>
+        <p>Launch a modern, responsive site quickly — lightweight CSS, semantic HTML and minimal JavaScript for accessibility and performance.</p>
+
+        <div class="btn-row">
+          <a class="btn" href="#features">See features</a>
+          <a class="btn secondary" href="#pricing">View pricing</a>
+        </div>
+
+        <div class="features" id="features" style="margin-top:20px">
+          <div class="feature">
+            <h4>Responsive</h4>
+            <p>Layouts adapt to any screen size using CSS grid and sensible breakpoints.</p>
+          </div>
+          <div class="feature">
+            <h4>Accessible</h4>
+            <p>Semantic markup and focus states for keyboard users and screen readers.</p>
+          </div>
+          <div class="feature">
+            <h4>Performant</h4>
+            <p>Small CSS bundle, only necessary JS — fast load times and low memory use.</p>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card aside" id="contact" aria-labelledby="contactHeading">
+        <h3 id="contactHeading">Get in touch</h3>
+        <p class="muted">Send us a quick message and we'll reply within one business day.</p>
+
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us about your project" required></textarea>
+          </div>
+
+          <button class="submit" type="submit">Send Message</button>
+          <div id="formStatus" class="muted" role="status" aria-live="polite"></div>
+        </form>
+      </aside>
+    </main>
+
+    <div class="gap"></div>
+
+    <section class="card" id="pricing" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+      <div style="padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);">
+        <h4>Starter</h4>
+        <p class="muted">For small projects</p>
+        <h3>$0 / mo</h3>
+        <ul style="margin-top:10px;color:var(--muted);line-height:1.6">
+          <li>1 site</li>
+          <li>Basic support</li>
+          <li>Community updates</li>
+        </ul>
+        <div style="margin-top:12px"><a class="btn" href="#signup">Choose</a></div>
+      </div>
+
+      <div style="padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(124,58,237,0.05), transparent);">
+        <h4>Pro</h4>
+        <p class="muted">Most popular</p>
+        <h3>$19 / mo</h3>
+        <ul style="margin-top:10px;color:var(--muted);line-height:1.6">
+          <li>Up to 5 sites</li>
+          <li>Priority support</li>
+          <li>Analytics</li>
+        </ul>
+        <div style="margin-top:12px"><a class="btn" href="#signup">Choose</a></div>
+      </div>
+
+      <div style="padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);">
+        <h4>Business</h4>
+        <p class="muted">Scale with confidence</p>
+        <h3>$79 / mo</h3>
+        <ul style="margin-top:10px;color:var(--muted);line-height:1.6">
+          <li>Unlimited sites</li>
+          <li>Dedicated support</li>
+          <li>Custom SLAs</li>
+        </ul>
+        <div style="margin-top:12px"><a class="btn" href="#signup">Choose</a></div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> SiteExample • Built with semantic HTML & minimal CSS
+    </footer>
+  </div>
+
+  <!-- Minimal JS for mobile nav and simple form handling -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle (very small)
+    const menuBtn = document.getElementById('menuToggle');
+    menuBtn && menuBtn.addEventListener('click', () => {
+      const nav = document.querySelector('nav');
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      if (!expanded) {
+        nav.style.display = 'flex';
+      } else {
+        nav.style.display = 'none';
+      }
+    });
+
+    // Simple form validation + UX
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form && form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      status.textContent = '';
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if (!name || !email || !message) {
+        status.textContent = 'Please complete all fields.';
+        return;
+      }
+      // Basic email pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        status.textContent = 'Please enter a valid email address.';
+        return;
+      }
+
+      // Simulate submit
+      status.textContent = 'Sending…';
+      setTimeout(() => {
+        status.textContent = 'Thanks! Your message has been received.';
+        form.reset();
+      }, 900);
+    });
+  </script>
+</body>
+</html>
